@@ -1,3 +1,5 @@
+import controlP5.*;
+
 /** MAS S60 Election Visualization
  *  Tiffany Tseng
  *  Description: Each state is represented by a colored ball, whose color value is scaled based on how red/blue the state voted
@@ -30,6 +32,9 @@ PFont font;
 ElectionData data;
 String[] statePostalCodes;  // holds a list of state postal codes
 
+ControlP5 cp5;
+Slider chaos;
+
 void setup() {
   background(255);
   size(screenWidth, screenHeight);
@@ -41,6 +46,17 @@ void setup() {
 
   Red = color(255, 0, 0);
   Blue = color(0, 10, 255);
+  
+  cp5 = new ControlP5(this);
+  
+  //add horizontal slider
+  cp5.addSlider("chaos")
+    .setPosition(50, 50)
+    .setRange(0,100)
+    .setValue(25)
+    .setWidth(200)
+    .setHeight(30)
+    ;
   
   //initiate all balls
   for (int i = 0; i<numStates; i++){
